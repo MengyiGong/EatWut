@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">EatWut</string>
+    <string name="help_string">Press The Button</string>
+    <string name="action_add">Add</string>
+    <string name="action_add_more">+ Add One</string>
+    <string name="action_detail">See List</string>
+    <string name="button_title">Let\'s Eat: </string>
+    <string name="button_eat_wut">Eat Wut</string>
+</resources>
