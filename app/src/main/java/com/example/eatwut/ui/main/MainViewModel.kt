@@ -5,7 +5,7 @@ import com.example.eatwut.bean.FavoriteNamesBean
 import com.example.eatwut.bean.favoriteNames
 
 class MainViewModel : ViewModel() {
-    private fun addFavoriteNames() {
+    fun addFavoriteNames() {
         favoriteNames.add(FavoriteNamesBean(0, "Wut the Pho", 5L))
         favoriteNames.add(FavoriteNamesBean(1, "Coco", 5L))
         favoriteNames.add(FavoriteNamesBean(2, "Chick fil-a", 3L))
@@ -31,7 +31,6 @@ class MainViewModel : ViewModel() {
     }
 
     fun getName(): String {
-        addFavoriteNames()
         var helper = getRandomName()
         var i = 0
         do {

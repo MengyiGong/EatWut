@@ -33,6 +33,7 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        viewModel.addFavoriteNames()
         start_btn.setOnClickListener {
             result_name.text = viewModel.getName()
         }
