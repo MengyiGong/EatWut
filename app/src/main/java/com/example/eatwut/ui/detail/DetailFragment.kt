@@ -9,8 +9,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatwut.R
+import com.example.eatwut.bean.favoriteNames
 import com.example.eatwut.ui.detail.adapter.DetailAdapter
-import com.example.eatwut.ui.detail.adapter.TestAdapter
+import kotlinx.android.synthetic.main.detail_fragment.detail_list
+
+
 
 class DetailFragment : Fragment() {
 
@@ -30,11 +33,14 @@ class DetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        val recyclerView = activity?.findViewById<RecyclerView>(R.id.detail_list)
-        if (recyclerView != null) {
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter = DetailAdapter()
-        }
+        detail_list.layoutManager = LinearLayoutManager(context)
+        detail_list.adapter = DetailAdapter(favoriteNames)
         // TODO: use viewModel
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        detail_list.adapter = null
+        favoriteNames.clear()
     }
 }

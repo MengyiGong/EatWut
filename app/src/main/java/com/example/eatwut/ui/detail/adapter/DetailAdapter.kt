@@ -4,10 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatwut.R
+import com.example.eatwut.bean.FavoriteNamesBean
 import com.example.eatwut.bean.favoriteNames
 
-class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
+class DetailAdapter(
+    val favoriteNames: MutableList<FavoriteNamesBean>
+) : RecyclerView.Adapter<DetailViewHolder>() {
 
+    var recyclerView: RecyclerView? = null
+
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        this.recyclerView = recyclerView
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        recyclerView.removeAllViews()
+        this.recyclerView = null
+    }
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,7 +50,7 @@ class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return favoriteNames.size
+        return favoriteNames.size + 1
     }
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
@@ -45,7 +58,13 @@ class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
             is DetailAddItemButtonViewHolder ->
                 holder.bindHeader(position)
             is DetailItemViewHolder ->
-                holder.bindItem(position)
+                holder.bindItem(position, favoriteNames[position - 1])
+        }
+    }
+
+    open fun updateData() {
+        recyclerView?.post {
+            notifyDataSetChanged()
         }
     }
 }
