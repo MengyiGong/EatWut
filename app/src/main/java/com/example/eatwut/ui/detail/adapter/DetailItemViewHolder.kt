@@ -19,7 +19,5 @@ open class DetailItemViewHolder(
         level.text = favoriteName.level.toString()
     }
 
-    override fun bindFooter(position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun bindFooter(position: Int) {}
 }

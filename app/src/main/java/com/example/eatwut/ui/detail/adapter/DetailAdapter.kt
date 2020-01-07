@@ -2,17 +2,19 @@ package com.example.eatwut.ui.detail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eatwut.R
 import com.example.eatwut.bean.FavoriteNamesBean
-import com.example.eatwut.bean.favoriteNames
 
 class DetailAdapter(
-    val favoriteNames: MutableList<FavoriteNamesBean>
+    private val favoriteNames: MutableList<FavoriteNamesBean>,
+    activity: FragmentActivity?
 ) : RecyclerView.Adapter<DetailViewHolder>() {
 
     var recyclerView: RecyclerView? = null
 
+    var activityA = activity
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         this.recyclerView = recyclerView
     }
@@ -31,7 +33,7 @@ class DetailAdapter(
                 val view =
                     LayoutInflater.from(parent.context)
                         .inflate(R.layout.add_item_view, parent, false)
-                DetailAddItemButtonViewHolder(view)
+                DetailAddItemButtonViewHolder(view, activityA)
             }
             else -> {
                 val view =
